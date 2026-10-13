@@ -15,8 +15,9 @@ function Layout() {
     <>
       <header className="site-header">
         <Link to="/" className="wordmark">
-          {settings.shopName}
-        </Link>
+  <img src="/logo.png" alt="" className="logo" />
+  alt={settings.shopName}
+</Link>
         {settings.whatsappNumber && (
           <a className="header-link" href={generalLink(settings.whatsappNumber)} target="_blank" rel="noreferrer">
             Message on WhatsApp
