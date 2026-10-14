@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { api, setToken } from '../api.js';
+import ImageEditor from '../components/ImageEditor.jsx';
 import { CONDITIONS, SCALES, STATUS_LABEL } from '../utils.js';
 
 const EMPTY = {
@@ -25,6 +26,7 @@ export default function CarForm() {
   const [error, setError] = useState('');
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [editingPhoto, setEditingPhoto] = useState(null); // the photo open in the editor
 
   function fail(err) {
     if (err.status === 401) {
@@ -64,6 +66,24 @@ export default function CarForm() {
       fail(err);
     } finally {
       setUploading(false);
+    }
+  }
+
+  // The editor gives back a new JPEG. Upload it and swap it in for the photo that was edited.
+  // A saved car drops the old file from storage when the car is saved.
+  async function saveEditedPhoto(blob) {
+    const original = editingPhoto;
+    const file = new File([blob], 'edited.jpg', { type: 'image/jpeg' });
+    try {
+      const [saved] = await api.upload([file]);
+      setCar((c) => ({ ...c, images: c.images.map((i) => (i.url === original.url ? saved : i)) }));
+      setEditingPhoto(null);
+    } catch (err) {
+      if (err.status === 401) {
+        setToken('');
+        navigate('/admin/login', { replace: true });
+      }
+      throw err; // the editor shows the message and stays open
     }
   }
 
@@ -182,6 +202,9 @@ export default function CarForm() {
                       Make cover
                     </button>
                   )}
+                  <button type="button" onClick={() => setEditingPhoto(img)}>
+                    Edit
+                  </button>
                   <button type="button" onClick={() => removePhoto(img.url)}>
                     Remove
                   </button>
@@ -210,6 +233,8 @@ export default function CarForm() {
           </Link>
         </div>
       </form>
+
+      {editingPhoto && <ImageEditor key={editingPhoto.url} src={editingPhoto.url} onSave={saveEditedPhoto} onCancel={() => setEditingPhoto(null)} />}
     </section>
   );
 }

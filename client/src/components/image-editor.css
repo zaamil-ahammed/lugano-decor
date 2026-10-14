@@ -1,0 +1,88 @@
+/* Photo editor dialog. Uses the colours defined in styles.css. */
+
+.editor {
+  width: min(560px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  overflow: auto;
+}
+
+.editor::backdrop {
+  background: rgba(30, 35, 40, 0.6);
+}
+
+.editor-body {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.editor .editor-body h2 {
+  margin: 0; /* beats the larger .panel h2 spacing from styles.css */
+  font-size: 1.8rem;
+}
+
+.editor-body .hint,
+.editor-body .notice {
+  margin: 0;
+}
+
+.editor-frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--primer);
+  border-bottom: 6px solid var(--tape);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none; /* lets a finger drag the photo instead of scrolling the page */
+  user-select: none;
+}
+
+.editor-frame:active {
+  cursor: grabbing;
+}
+
+.editor-frame canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.editor-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+}
+
+.editor-controls {
+  display: grid;
+  gap: 4px;
+}
+
+.editor-controls label {
+  display: grid;
+  grid-template-columns: 88px 1fr 48px;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.editor-controls input[type='range'] {
+  padding: 0;
+  border: 0;
+  background: none;
+  accent-color: var(--ink);
+}
+
+.editor-controls output {
+  text-align: right;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
