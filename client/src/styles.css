@@ -270,7 +270,7 @@ textarea {
 
 .plinth {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   display: grid;
   place-items: center;
   background: color-mix(in srgb, var(--paint, #c9ced1) 18%, #eef0ee);
@@ -697,7 +697,7 @@ textarea {
 }
 .photo-list img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border-radius: 3px;
 }

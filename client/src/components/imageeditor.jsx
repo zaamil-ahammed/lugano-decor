@@ -1,11 +1,13 @@
- import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import './image-editor.css';
 
-// The frame has the same 4:3 shape as the catalogue cards, so what you see here is what visitors see.
-const RATIO = 4 / 3;
-const MAX_W = 1200; // saved photos are at most 1200 x 900
+// The frame has the same 3:2 shape as the catalogue cards, so what you see here is what visitors
+// see. To change the card shape, change RATIO here, PREVIEW_W/H below, and the aspect-ratio lines
+// in styles.css and image-editor.css.
+const RATIO = 3 / 2; // width / height
+const MAX_W = 1200; // saved photos are at most 1200 x 800
 const PREVIEW_W = 480;
-const PREVIEW_H = 360;
+const PREVIEW_H = 320;
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 

@@ -33,7 +33,7 @@
 
 .editor-frame {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   background: var(--primer);
   border-bottom: 6px solid var(--tape);
   overflow: hidden;
