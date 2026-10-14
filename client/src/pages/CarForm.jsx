@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { api, setToken } from '../api.js';
-import ImageEditor from '../components/imageEditor.jsx';
+import ImageEditor from '../components/Imageeditor.jsx';
 import { CONDITIONS, SCALES, STATUS_LABEL } from '../utils.js';
 
 const EMPTY = {
