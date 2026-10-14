@@ -95,6 +95,14 @@ main {
   font-weight: 800;
   font-size: 1.35rem;
   text-decoration: none;
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+}
+
+.logo {
+  height: 75px;
+  width: auto;
 }
 
 .header-link {
@@ -116,10 +124,10 @@ main {
   padding: 28px 0 8px;
 }
 
-.hero h1 {
+/* .hero h1 {
   font-size: clamp(2.75rem, 11vw, 5.5rem);
   max-width: 14ch;
-}
+} */
 
 .tagline {
   margin: 12px 0 0;

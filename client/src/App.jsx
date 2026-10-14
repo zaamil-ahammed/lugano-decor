@@ -15,11 +15,12 @@ function Layout() {
     <>
       <header className="site-header">
         <Link to="/" className="wordmark">
-          {settings.shopName}
-        </Link>
+  <img src="/logo.svg" alt="" className="logo" 
+  alt={settings.shopName}/>
+</Link>
         {settings.whatsappNumber && (
           <a className="header-link" href={generalLink(settings.whatsappNumber)} target="_blank" rel="noreferrer">
-            Message on WhatsApp
+            Order on WhatsApp
           </a>
         )}
       </header>
@@ -27,7 +28,7 @@ function Layout() {
         <Outlet />
       </main>
       <footer className="site-footer">
-        <span>The best you can get.</span>
+        { <span>The best you can everget.</span> }
       </footer>
     </>
   );
